@@ -19,8 +19,8 @@ export function Logo({
 }: { className?: string; light?: boolean }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <span className="grid size-12 place-items-center rounded-xl bg-white ring-1 ring-border shadow-sm">
-        <LogoMark className="size-9 object-contain" />
+      <span className="grid size-12 place-items-center rounded-xl bg-[#ffffff20] ring-1 ring-border shadow-sm">
+        <LogoMark className="size-12 object-contain" />
       </span>
       <span className="flex flex-col leading-tight">
         <span
