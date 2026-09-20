@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main id="page-content">
         <Hero />
         <StatsBar />
         <About />

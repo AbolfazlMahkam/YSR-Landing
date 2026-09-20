@@ -46,13 +46,13 @@ export function Testimonials() {
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.1}>
               <figure className="relative flex h-full flex-col rounded-3xl border border-gold/15 bg-white p-7 shadow-sm">
-                <Quote className="size-9 text-gold/40" />
+                <Quote className="size-9 text-gold/40" aria-hidden="true" />
                 <blockquote className="mt-4 flex-1 text-pretty leading-8 text-text-dark">
                   {t.text}
                 </blockquote>
-                <div className="mt-5 flex items-center gap-1 text-gold">
+                <div className="mt-5 flex items-center gap-1 text-gold" role="img" aria-label="امتیاز ۵ از ۵">
                   {Array.from({ length: 5 }).map((_, s) => (
-                    <Star key={s} className="size-4 fill-gold" />
+                    <Star key={s} className="size-4 fill-gold" aria-hidden="true" />
                   ))}
                 </div>
                 <figcaption className="mt-5 flex items-center gap-3 border-t border-gold/15 pt-5">

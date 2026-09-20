@@ -4,22 +4,40 @@ import { LogoMark } from '@/components/logo'
 const columns = [
   {
     title: 'دسترسی سریع',
-    links: ['خانه', 'دوره‌ها', 'مقالات', 'درباره ما', 'تماس با ما'],
+    links: [
+      { label: 'خانه', href: '#home' },
+      { label: 'دوره‌ها', href: '#courses' },
+      { label: 'مقالات', href: '#blog' },
+      { label: 'درباره ما', href: '#about' },
+      { label: 'تماس با ما', href: '#contact' },
+    ],
   },
   {
     title: 'دوره‌ها',
     links: [
-      'روان‌درمانی شناختی',
-      'مشاوره خانواده',
-      'روانشناسی معنوی',
-      'مهارت‌های زندگی',
-      'تربیت فرزند',
+      { label: 'روان‌درمانی شناختی', href: '#courses' },
+      { label: 'مشاوره خانواده', href: '#courses' },
+      { label: 'روانشناسی معنوی', href: '#courses' },
+      { label: 'مهارت‌های زندگی', href: '#courses' },
+      { label: 'تربیت فرزند', href: '#courses' },
     ],
   },
   {
     title: 'خدمات',
-    links: ['مشاوره فردی', 'مشاوره خانواده', 'کارگاه‌های آموزشی', 'گواهینامه‌ها'],
+    links: [
+      { label: 'مشاوره فردی', href: '#contact' },
+      { label: 'مشاوره خانواده', href: '#contact' },
+      { label: 'کارگاه‌های آموزشی', href: '#courses' },
+      { label: 'گواهینامه‌ها', href: '#courses' },
+    ],
   },
+]
+
+const socials = [
+  { icon: Send, label: 'تلگرام' },
+  { icon: MessageCircle, label: 'واتس‌اپ' },
+  { icon: Phone, label: 'تماس', href: 'tel:+982188881234' },
+  { icon: Mail, label: 'ایمیل', href: 'mailto:info@yavaran-ravan.ir' },
 ]
 
 export function SiteFooter() {
@@ -27,7 +45,6 @@ export function SiteFooter() {
     <footer className="bg-footer text-white/70">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-5">
-          {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3">
               <span className="grid size-11 place-items-center rounded-xl bg-green-main text-gold">
@@ -42,36 +59,35 @@ export function SiteFooter() {
               روانشناسی و حکمت اصیل اسلامی، همراه شما در راه آرامش و رشد پایدار.
             </p>
             <div className="mt-6 flex items-center gap-3">
-              {[Send, MessageCircle, Phone, Mail].map((Icon, i) => (
+              {socials.map(({ icon: Icon, label, href }) => (
                 <a
-                  key={i}
-                  href="#contact"
-                  aria-label="شبکه اجتماعی"
+                  key={label}
+                  href={href ?? '#contact'}
+                  aria-label={label}
                   className="grid size-10 place-items-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-gold hover:bg-gold hover:text-green-deep"
                 >
-                  <Icon className="size-5" />
+                  <Icon className="size-5" aria-hidden="true" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Link columns */}
           {columns.map((col) => (
-            <div key={col.title}>
+            <nav key={col.title} aria-label={col.title}>
               <h3 className="text-sm font-bold text-white">{col.title}</h3>
               <ul className="mt-4 space-y-3">
                 {col.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-sm transition-colors hover:text-gold"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
       </div>
@@ -81,7 +97,7 @@ export function SiteFooter() {
           <p>© ۱۴۰۴ موسسه یاوران سلامت روان. تمامی حقوق محفوظ است.</p>
           <p className="inline-flex items-center gap-1.5">
             طراحی و توسعه با
-            <Heart className="size-3.5 fill-red-brand text-red-brand" />
+            <Heart className="size-3.5 fill-red-brand text-red-brand" aria-hidden="true" />
             برای سلامت روان جامعه
           </p>
         </div>

@@ -1,34 +1,34 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { ArrowLeft, PlayCircle } from "lucide-react";
 import { Mandala } from "@/components/mandala";
 
 export function Hero() {
+  const reduce = useReducedMotion();
+
+  const slowLoop = (duration: number) =>
+    reduce ? { animate: { rotate: 0 } } : { animate: { rotate: 360 }, transition: { duration, repeat: Infinity, ease: "linear" as const } };
+
   return (
     <section
       id="home"
       className="relative overflow-hidden bg-green-deep pt-28 pb-20 text-white sm:pt-36 sm:pb-28">
-      {/* geometric texture */}
       <div className="islamic-pattern-gold pointer-events-none absolute inset-0 opacity-[0.12]" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-green-deep via-green-deep to-[#123f28]" />
 
-      {/* rotating mandala accents */}
       <motion.div
         className="pointer-events-none absolute -left-24 -top-24 text-gold/20"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}>
+        {...slowLoop(90)}>
         <Mandala className="size-72" />
       </motion.div>
       <motion.div
         className="pointer-events-none absolute -bottom-32 -right-20 text-green-light/15"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 120, repeat: Infinity, ease: "linear" }}>
+        {...slowLoop(120)}>
         <Mandala className="size-96" />
       </motion.div>
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        {/* Text */}
         <div className="text-center lg:text-right">
           <motion.span
             initial={{ opacity: 0, y: 16 }}
@@ -77,7 +77,6 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Emblem */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -86,8 +85,7 @@ export function Hero() {
           <div className="absolute inset-6 rounded-full border border-gold/30" />
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-gold/10 to-transparent" />
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+            {...slowLoop(60)}
             className="text-gold/70">
             <Mandala className="size-[26rem]" />
           </motion.div>
@@ -104,7 +102,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* bottom wave */}
       <svg
         className="pointer-events-none absolute -bottom-px left-0 w-full text-cream"
         viewBox="0 0 1440 80"

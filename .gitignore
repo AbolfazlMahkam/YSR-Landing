@@ -8,8 +8,21 @@ __v0_jsx-dev-runtime.ts
 
 # Environment variables
 .env*.local
+.env
 
-# Common ignores
-node_modules
+# Dependencies
+node_modules/
+
+# Next.js build output
 .next/
+out/
+
+# Misc
 .DS_Store
+*.tsbuildinfo
+
+# Debug / logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*

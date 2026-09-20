@@ -103,6 +103,20 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Islamic geometric repeating background pattern */
 .islamic-pattern {
   background-color: transparent;
@@ -140,6 +154,7 @@
     transparent 70%
   );
   transform: translateX(-120%);
+  will-change: transform;
 }
 .shimmer:hover::after {
   animation: gold-shimmer 0.9s ease;
