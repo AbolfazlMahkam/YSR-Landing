@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next'
 import { siteConfig } from '@/lib/site'
 
+// Required for `output: 'export'` so the route is prerendered at build time.
+export const dynamic = 'force-static'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

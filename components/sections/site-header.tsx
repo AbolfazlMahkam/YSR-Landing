@@ -1,27 +1,34 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 import { Logo } from '@/components/logo'
-
-const navLinks = [
-  { label: 'خانه', href: '#home' },
-  { label: 'دوره‌ها', href: '#courses' },
-  { label: 'مقالات', href: '#blog' },
-  { label: 'درباره ما', href: '#about' },
-  { label: 'تماس', href: '#contact' },
-]
+import { ctaLink, navLinks } from '@/lib/nav'
 
 export function SiteHeader() {
+  const pathname = usePathname()
+  const isHome = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
+  // The mobile menu stores the route it was opened on, so navigating to a new
+  // route closes it without an extra effect.
+  const [menuPath, setMenuPath] = useState<string | null>(null)
+  const open = menuPath === pathname
   const triggerRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
   const dur = (n: number) => (reduce ? 0.0001 : n)
   const bezier = (a: number, b: number, c: number, d: number) =>
     [a, b, c, d] as [number, number, number, number]
+
+  // On the landing page the nav jumps to the matching section; elsewhere it
+  // navigates to the dedicated page.
+  const hrefFor = (href: string, section: string) =>
+    isHome ? `${href}#${section}` : href
+
+  const ctaHref = hrefFor(ctaLink.href, 'contact')
 
   const menuVariants: Variants = {
     closed: {
@@ -57,7 +64,7 @@ export function SiteHeader() {
     if (!open) return
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setOpen(false)
+        setMenuPath(null)
         triggerRef.current?.focus()
       }
     }
@@ -74,7 +81,7 @@ export function SiteHeader() {
   }, [open])
 
   const closeAndFocus = useCallback(() => {
-    setOpen(false)
+    setMenuPath(null)
     triggerRef.current?.focus()
   }, [])
 
@@ -92,42 +99,50 @@ export function SiteHeader() {
         }`}
       >
         <div className="flex h-16 items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <a href="#home" aria-label="یاوران سلامت روان — بازگشت به صفحه اصلی">
+          <Link href="/" aria-label="یاوران سلامت روان — بازگشت به صفحه اصلی">
             <Logo light={!scrolled} />
-          </a>
+          </Link>
 
           <ul className="hidden items-center gap-8 lg:flex" role="list">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className={`text-sm font-medium transition-colors ${
-                    scrolled
-                      ? 'text-text-mid hover:text-green-main'
-                      : 'text-white hover:text-gold'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const active = pathname === link.href
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={hrefFor(link.href, link.section)}
+                    aria-current={active ? 'page' : undefined}
+                    className={`text-sm font-medium transition-colors ${
+                      active
+                        ? scrolled
+                          ? 'text-green-main'
+                          : 'text-gold'
+                        : scrolled
+                          ? 'text-text-mid hover:text-green-main'
+                          : 'text-white hover:text-gold'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
 
           <div className="flex items-center gap-2">
-            <a
-              href="#contact"
+            <Link
+              href={ctaHref}
               className={`hidden rounded-full border border-gold px-6 py-2.5 text-sm font-semibold transition-colors lg:inline-block ${
                 scrolled
                   ? 'text-green-deep hover:bg-gold hover:text-white'
                   : 'text-white hover:bg-gold hover:text-white'
               }`}
             >
-              مشاوره رایگان
-            </a>
+              {ctaLink.label}
+            </Link>
             <button
               type="button"
               ref={triggerRef}
-              onClick={() => setOpen((v) => !v)}
+              onClick={() => setMenuPath(open ? null : pathname)}
               className={`grid size-11 place-items-center rounded-lg transition-colors lg:hidden ${
                 scrolled
                   ? 'text-green-deep hover:bg-green-mist'
@@ -169,24 +184,28 @@ export function SiteHeader() {
                   className="flex flex-col gap-1"
                   role="list"
                 >
-                  {navLinks.map((link) => (
-                    <motion.li key={link.href} variants={itemVariants}>
-                      <a
-                        href={link.href}
-                        onClick={closeAndFocus}
-                        className={`block rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
-                          scrolled
-                            ? 'text-text-dark hover:bg-green-mist hover:text-green-main'
-                            : 'text-white hover:bg-white/15 hover:text-gold'
-                        }`}
-                      >
-                        {link.label}
-                      </a>
-                    </motion.li>
-                  ))}
+                  {navLinks.map((link) => {
+                    const active = pathname === link.href
+                    return (
+                      <motion.li key={link.href} variants={itemVariants}>
+                        <Link
+                          href={hrefFor(link.href, link.section)}
+                          onClick={closeAndFocus}
+                          aria-current={active ? 'page' : undefined}
+                          className={`block rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                            scrolled
+                              ? 'text-text-dark hover:bg-green-mist hover:text-green-main'
+                              : 'text-white hover:bg-white/15 hover:text-gold'
+                          }`}
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.li>
+                    )
+                  })}
                   <motion.li variants={itemVariants} className="mt-2">
-                    <a
-                      href="#contact"
+                    <Link
+                      href={ctaHref}
                       onClick={closeAndFocus}
                       className={`block rounded-full border border-gold px-6 py-3 text-center text-sm font-semibold transition-colors ${
                         scrolled
@@ -194,8 +213,8 @@ export function SiteHeader() {
                           : 'text-white hover:bg-gold hover:text-white'
                       }`}
                     >
-                      مشاوره رایگان
-                    </a>
+                      {ctaLink.label}
+                    </Link>
                   </motion.li>
                 </motion.ul>
               </div>

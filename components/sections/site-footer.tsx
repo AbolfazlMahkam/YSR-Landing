@@ -1,43 +1,46 @@
-import { Send, MessageCircle, Phone, Mail, Heart } from 'lucide-react'
+import Link from 'next/link'
+import { Heart, Mail, MapPin, Phone, Send } from 'lucide-react'
 import { LogoMark } from '@/components/logo'
+import { courses } from '@/lib/courses'
+import { siteConfig } from '@/lib/site'
 
 const columns = [
   {
     title: 'دسترسی سریع',
     links: [
-      { label: 'خانه', href: '#home' },
-      { label: 'دوره‌ها', href: '#courses' },
-      { label: 'مقالات', href: '#blog' },
-      { label: 'درباره ما', href: '#about' },
-      { label: 'تماس با ما', href: '#contact' },
+      { label: 'خانه', href: '/' },
+      { label: 'دوره‌ها', href: '/courses' },
+      { label: 'مقالات', href: '/blog' },
+      { label: 'درباره ما', href: '/about' },
+      { label: 'تماس با ما', href: '/contact' },
     ],
   },
   {
     title: 'دوره‌ها',
     links: [
-      { label: 'روان‌درمانی شناختی', href: '#courses' },
-      { label: 'مشاوره خانواده', href: '#courses' },
-      { label: 'روانشناسی معنوی', href: '#courses' },
-      { label: 'مهارت‌های زندگی', href: '#courses' },
-      { label: 'تربیت فرزند', href: '#courses' },
+      { label: 'روان‌درمانی شناختی', href: '/courses/cbt-psychotherapy' },
+      { label: 'مشاوره خانواده', href: '/courses/family-counseling' },
+      { label: 'روانشناسی معنوی', href: '/courses/spiritual-psychology' },
+      { label: 'تربیت فرزند', href: '/courses/conscious-parenting' },
+      { label: 'روان‌سنجی بالینی', href: '/courses/clinical-psychometrics' },
     ],
   },
   {
     title: 'خدمات',
     links: [
-      { label: 'مشاوره فردی', href: '#contact' },
-      { label: 'مشاوره خانواده', href: '#contact' },
-      { label: 'کارگاه‌های آموزشی', href: '#courses' },
-      { label: 'گواهینامه‌ها', href: '#courses' },
+      { label: 'مشاوره فردی', href: '/contact' },
+      { label: 'مشاوره خانواده', href: '/contact' },
+      { label: 'کارگاه‌های آموزشی', href: '/courses' },
+      { label: 'گواهینامه‌ها', href: '/courses' },
     ],
   },
 ]
 
 const socials = [
-  { icon: Send, label: 'تلگرام' },
-  { icon: MessageCircle, label: 'واتس‌اپ' },
-  { icon: Phone, label: 'تماس', href: 'tel:+982188881234' },
-  { icon: Mail, label: 'ایمیل', href: 'mailto:info@yavaran-ravan.ir' },
+  { icon: Send, label: 'تلگرام', href: siteConfig.sameAs[0] },
+  { icon: Send, label: 'ایتا', href: siteConfig.sameAs[1] },
+  { icon: Phone, label: 'تماس', href: `tel:${siteConfig.phoneE164}` },
+  { icon: Mail, label: 'ایمیل', href: `mailto:${siteConfig.email}` },
 ]
 
 export function SiteFooter() {
@@ -58,11 +61,41 @@ export function SiteFooter() {
               موسسه آموزشی و پژوهشی یاوران سلامت روان، در مسیر پیوند دانش نوین
               روانشناسی و حکمت اصیل اسلامی، همراه شما در راه آرامش و رشد پایدار.
             </p>
+
+            <ul className="mt-6 space-y-2 text-sm">
+              <li className="flex items-start gap-2">
+                <MapPin
+                  className="mt-1 size-4 shrink-0 text-gold"
+                  aria-hidden="true"
+                />
+                <span className="leading-7">{siteConfig.address}</span>
+              </li>
+              <li>
+                <a
+                  href={`tel:${siteConfig.phoneE164}`}
+                  dir="ltr"
+                  className="transition-colors hover:text-gold"
+                >
+                  {siteConfig.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="transition-colors hover:text-gold"
+                >
+                  {siteConfig.email}
+                </a>
+              </li>
+            </ul>
+
             <div className="mt-6 flex items-center gap-3">
               {socials.map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
-                  href={href ?? '#contact'}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   aria-label={label}
                   className="grid size-10 place-items-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-gold hover:bg-gold hover:text-green-deep"
                 >
@@ -78,18 +111,23 @@ export function SiteFooter() {
               <ul className="mt-4 space-y-3">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <Link
                       href={link.href}
                       className="text-sm transition-colors hover:text-gold"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </nav>
           ))}
         </div>
+
+        <p className="mt-10 text-xs text-white/40">
+          {courses.length} دوره تخصصی فعال — همه دوره‌ها با گواهی معتبر و امکان
+          شرکت حضوری یا آنلاین.
+        </p>
       </div>
 
       <div className="border-t border-white/10">

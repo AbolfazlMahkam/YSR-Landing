@@ -1,40 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Clock, Users, ArrowLeft, Star } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { StarDivider } from '@/components/star-divider'
+import { courses } from '@/lib/courses'
 
-const courses = [
-  {
-    image: '/images/course-1.png',
-    tag: 'روانشناسی شناختی',
-    title: 'اصول روان‌درمانی شناختی-رفتاری',
-    desc: 'آشنایی با تکنیک‌های علمی درمان اضطراب، افسردگی و بازسازی الگوهای فکری.',
-    duration: '۲۴ ساعت',
-    students: '۱٬۸۰۰',
-    rating: '۴٫۹',
-    price: '۲٬۴۰۰٬۰۰۰',
-  },
-  {
-    image: '/images/course-2.png',
-    tag: 'خانواده و ازدواج',
-    title: 'مشاوره خانواده و مهارت‌های زندگی',
-    desc: 'بهبود روابط زناشویی و تربیت فرزندان بر اساس اصول روانشناسی و سبک زندگی اسلامی.',
-    duration: '۱۸ ساعت',
-    students: '۲٬۳۵۰',
-    rating: '۴٫۸',
-    price: '۱٬۹۰۰٬۰۰۰',
-  },
-  {
-    image: '/images/course-3.png',
-    tag: 'روانشناسی اسلامی',
-    title: 'روان‌شناسی معنوی و آرامش درون',
-    desc: 'کشف پیوند میان معنویت، ذکر و سلامت روان بر پایه آموزه‌های قرآن و اهل‌بیت (ع).',
-    duration: '۲۰ ساعت',
-    students: '۱٬۵۲۰',
-    rating: '۵٫۰',
-    price: '۲٬۱۰۰٬۰۰۰',
-  },
-]
+const featured = courses.slice(0, 3)
 
 export function Courses() {
   return (
@@ -56,9 +27,9 @@ export function Courses() {
         </div>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {courses.map((c, i) => (
-            <Reveal key={c.title} delay={i * 0.1}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-gold/15 bg-cream shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-green-deep/10">
+          {featured.map((c, i) => (
+            <Reveal key={c.slug} delay={i * 0.1}>
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gold/15 bg-cream shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-green-deep/10">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={c.image}
@@ -78,10 +49,13 @@ export function Courses() {
 
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="text-lg font-bold leading-7 text-text-dark">
-                    {c.title}
+                    <Link href={`/courses/${c.slug}`}>
+                      <span className="absolute inset-0" aria-hidden="true" />
+                      {c.title}
+                    </Link>
                   </h3>
                   <p className="mt-3 flex-1 text-sm leading-7 text-text-mid">
-                    {c.desc}
+                    {c.summary}
                   </p>
 
                   <div className="mt-5 flex items-center gap-4 text-xs text-text-mid">
@@ -100,13 +74,10 @@ export function Courses() {
                       <span className="text-lg font-extrabold">{c.price}</span>
                       <span className="text-xs text-text-mid">تومان</span>
                     </div>
-                    <a
-                      href="#contact"
-                      className="inline-flex items-center gap-1.5 rounded-full bg-green-main px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-green-deep"
-                    >
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-green-main px-4 py-2 text-xs font-bold text-white transition-colors group-hover:bg-green-deep">
                       ثبت‌نام
                       <ArrowLeft className="size-3.5" />
-                    </a>
+                    </span>
                   </div>
                 </div>
               </article>
@@ -116,13 +87,13 @@ export function Courses() {
 
         <Reveal delay={0.2}>
           <div className="mt-12 text-center">
-            <a
-              href="#courses"
+            <Link
+              href="/courses"
               className="inline-flex items-center gap-2 rounded-full border border-green-main px-8 py-3.5 text-sm font-bold text-green-deep transition-colors hover:bg-green-main hover:text-white"
             >
               مشاهده همه دوره‌ها
               <ArrowLeft className="size-4" />
-            </a>
+            </Link>
           </div>
         </Reveal>
       </div>

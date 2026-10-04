@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d5c32"/>
+      <stop offset="1" stop-color="#128a4a"/>
+    </linearGradient>
+    <pattern id="stars" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M22 4 L26.6 14.4 L37 14.4 L29.2 20.8 L31.8 30.6 L22 24.8 L12.2 30.6 L14.8 20.8 L7 14.4 L17.4 14.4 Z" fill="none" stroke="#c8a24a" stroke-width="1" stroke-opacity=".3"/>
+    </pattern>
+  </defs>
+  <rect width="480" height="300" fill="url(#bg)"/>
+  <rect width="480" height="300" fill="url(#stars)"/>
+  <g transform="translate(368 150)" fill="none" stroke="#e7c880" stroke-width="1.1">
+    <circle r="104" stroke-opacity=".5"/>
+    <circle r="78" stroke-dasharray="3 6" stroke-opacity=".4"/>
+    <g stroke-opacity=".35">
+      <g transform="rotate(0)"><path d="M0 -104 C12 -76 12 -52 0 -34 C-12 -52 -12 -76 0 -104 Z"/></g>
+      <g transform="rotate(45)"><path d="M0 -104 C12 -76 12 -52 0 -34 C-12 -52 -12 -76 0 -104 Z"/></g>
+      <g transform="rotate(90)"><path d="M0 -104 C12 -76 12 -52 0 -34 C-12 -52 -12 -76 0 -104 Z"/></g>
+      <g transform="rotate(135)"><path d="M0 -104 C12 -76 12 -52 0 -34 C-12 -52 -12 -76 0 -104 Z"/></g>
+      <g transform="rotate(180)"><path d="M0 -104 C12 -76 12 -52 0 -34 C-12 -52 -12 -76 0 -104 Z"/></g>
+      <g transform="rotate(225)"><path d="M0 -104 C12 -76 12 -52 0 -34 C-12 -52 -12 -76 0 -104 Z"/></g>
+      <g transform="rotate(270)"><path d="M0 -104 C12 -76 12 -52 0 -34 C-12 -52 -12 -76 0 -104 Z"/></g>
+      <g transform="rotate(315)"><path d="M0 -104 C12 -76 12 -52 0 -34 C-12 -52 -12 -76 0 -104 Z"/></g>
+    </g>
+    <polygon points="0,-52 14,-17 51,-17 22,5 32,42 0,21 -32,42 -22,5 -51,-17 -14,-17" stroke-opacity=".6"/>
+  </g>
+  <circle cx="120" cy="150" r="46" fill="none" stroke="#e7c880" stroke-opacity=".22"/>
+</svg>

@@ -52,19 +52,21 @@ export function About() {
           </Reveal>
           <ul className="mt-8 space-y-4">
             {points.map((p, i) => (
-              <Reveal key={p} delay={0.15 + i * 0.08}>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-green-main text-white">
-                    <Check className="size-4" />
-                  </span>
-                  <span className="leading-7 text-text-dark">{p}</span>
-                </li>
-              </Reveal>
+              <li key={p}>
+                <Reveal delay={0.15 + i * 0.08}>
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-green-main text-white">
+                      <Check className="size-4" />
+                    </span>
+                    <span className="leading-7 text-text-dark">{p}</span>
+                  </div>
+                </Reveal>
+              </li>
             ))}
           </ul>
           <Reveal delay={0.4}>
             <a
-              href="#contact"
+              href="/about"
               className="mt-9 inline-flex rounded-full bg-green-main px-8 py-3.5 text-sm font-bold text-white transition-colors hover:bg-green-deep"
             >
               بیشتر بدانید
