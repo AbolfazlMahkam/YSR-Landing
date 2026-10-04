@@ -13,4 +13,6 @@ export const navLinks: NavLink[] = [
   { label: 'تماس', href: '/contact', section: 'contact' },
 ]
 
-export const ctaLink = { label: 'مشاوره رایگان', href: '/contact' }
+// Members area lives on its own host, so it is always an absolute URL and never
+// goes through the landing-page anchor logic.
+export const panelLink = { label: 'ورود', href: 'https://panel.rohanian-ysr.ir' }

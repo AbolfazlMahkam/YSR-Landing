@@ -1,8 +1,18 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Vazirmatn } from 'next/font/google'
+import { ogAlt, ogSize } from '@/lib/og/card'
 import { siteConfig } from '@/lib/site'
 import './globals.css'
+
+// Rendered into public/og-image.png by scripts/generate-og.mjs. See the note
+// in that script for why this is a build step and not an app/*-image.tsx route.
+const ogImage = {
+  url: '/og-image.png',
+  width: ogSize.width,
+  height: ogSize.height,
+  alt: ogAlt,
+}
 
 const vazir = Vazirmatn({
   subsets: ['arabic'],
@@ -43,28 +53,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} | پیوند روانشناسی نوین و حکمت اسلامی`,
     description: siteConfig.description,
-    images: [
-      {
-        url: '/images/logo.png',
-        width: 96,
-        height: 96,
-        alt: `نشان ${siteConfig.name}`,
-      },
-    ],
+    images: [ogImage],
   },
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
-    images: ['/images/logo.png'],
-  },
-  icons: {
-    icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/icon-dark-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icon-light-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: '/apple-icon.png',
+    images: [ogImage],
   },
   robots: {
     index: true,

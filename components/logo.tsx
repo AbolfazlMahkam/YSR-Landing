@@ -5,8 +5,8 @@ export function LogoMark({ className = '' }: { className?: string }) {
     <Image
       src="/images/logo.png"
       alt="نشان موسسه یاوران سلامت روان"
-      width={96}
-      height={96}
+      width={581}
+      height={581}
       className={className}
       priority
     />

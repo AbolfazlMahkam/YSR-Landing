@@ -4,9 +4,9 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion/react'
-import { Menu, X } from 'lucide-react'
+import { LogIn, Menu, X } from 'lucide-react'
 import { Logo } from '@/components/logo'
-import { ctaLink, navLinks } from '@/lib/nav'
+import { navLinks, panelLink } from '@/lib/nav'
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -27,8 +27,6 @@ export function SiteHeader() {
   // navigates to the dedicated page.
   const hrefFor = (href: string, section: string) =>
     isHome ? `${href}#${section}` : href
-
-  const ctaHref = hrefFor(ctaLink.href, 'contact')
 
   const menuVariants: Variants = {
     closed: {
@@ -129,16 +127,19 @@ export function SiteHeader() {
           </ul>
 
           <div className="flex items-center gap-2">
-            <Link
-              href={ctaHref}
-              className={`hidden rounded-full border border-gold px-6 py-2.5 text-sm font-semibold transition-colors lg:inline-block ${
+            <a
+              href={panelLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`hidden items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors lg:inline-flex ${
                 scrolled
-                  ? 'text-green-deep hover:bg-gold hover:text-white'
-                  : 'text-white hover:bg-gold hover:text-white'
+                  ? 'border-green-main/30 text-green-deep hover:bg-green-main hover:text-white'
+                  : 'border-white/25 text-white hover:bg-white/10 hover:border-gold/60'
               }`}
             >
-              {ctaLink.label}
-            </Link>
+              <LogIn className="size-4" aria-hidden="true" />
+              {panelLink.label}
+            </a>
             <button
               type="button"
               ref={triggerRef}
@@ -204,17 +205,20 @@ export function SiteHeader() {
                     )
                   })}
                   <motion.li variants={itemVariants} className="mt-2">
-                    <Link
-                      href={ctaHref}
+                    <a
+                      href={panelLink.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={closeAndFocus}
-                      className={`block rounded-full border border-gold px-6 py-3 text-center text-sm font-semibold transition-colors ${
+                      className={`flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-center text-sm font-semibold transition-colors ${
                         scrolled
-                          ? 'text-green-deep hover:bg-gold hover:text-white'
-                          : 'text-white hover:bg-gold hover:text-white'
+                          ? 'border-green-main/30 text-green-deep hover:bg-green-main hover:text-white'
+                          : 'border-white/25 text-white hover:bg-white/10 hover:border-gold/60'
                       }`}
                     >
-                      {ctaLink.label}
-                    </Link>
+                      <LogIn className="size-4" aria-hidden="true" />
+                      {panelLink.label}
+                    </a>
                   </motion.li>
                 </motion.ul>
               </div>
