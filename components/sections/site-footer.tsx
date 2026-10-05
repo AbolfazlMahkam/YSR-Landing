@@ -1,5 +1,6 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Heart, Mail, MapPin, Phone, Send } from 'lucide-react'
+import { Mail, MapPin, Phone, Send } from 'lucide-react'
 import { LogoMark } from '@/components/logo'
 import { courses } from '@/lib/courses'
 import { siteConfig } from '@/lib/site'
@@ -134,9 +135,22 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-center text-xs text-white/50 sm:flex-row sm:px-6 sm:text-right lg:px-8">
           <p>© ۱۴۰۴ موسسه یاوران سلامت روان. تمامی حقوق محفوظ است.</p>
           <p className="inline-flex items-center gap-1.5">
-            طراحی و توسعه با
-            <Heart className="size-3.5 fill-red-brand text-red-brand" aria-hidden="true" />
-            برای سلامت روان جامعه
+            طراحی و توسعه توسط
+            <a
+              href="https://abolfazlmahkam.ir"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-gold transition-colors hover:text-white"
+            >
+              a.mahkam.950
+            </a>
+            <Image
+              src="/images/a.mahkam.950.png"
+              alt=""
+              width={180}
+              height={180}
+              className="size-6"
+            />
           </p>
         </div>
       </div>
