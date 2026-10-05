@@ -5,8 +5,9 @@ import { ogAlt, ogSize } from '@/lib/og/card'
 import { siteConfig } from '@/lib/site'
 import './globals.css'
 
-// Rendered into public/og-image.png by scripts/generate-og.mjs. See the note
-// in that script for why this is a build step and not an app/*-image.tsx route.
+// Hand-maintained asset in public/. Not an app/*-image.tsx route because this
+// site builds with output: 'export', which emits those as extension-less files
+// that GitHub Pages serves as application/octet-stream.
 const ogImage = {
   url: '/og-image.png',
   width: ogSize.width,

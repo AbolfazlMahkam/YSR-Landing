@@ -7,7 +7,9 @@
  * Pages then serves those as application/octet-stream and Twitter/X refuse to
  * render them. A real .png in public/ is served as image/png.
  *
- * Run via `npm run build` (wired into the build script) — not on its own.
+ * public/og-image.png is now maintained by hand and ships as-is. Run this
+ * with `npm run generate:og` only if you go back to the generated card; it
+ * overwrites the hand-made file.
  */
 import { createRequire } from 'node:module'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
