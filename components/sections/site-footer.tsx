@@ -133,7 +133,7 @@ export function SiteFooter() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-center text-xs text-white/50 sm:flex-row sm:px-6 sm:text-right lg:px-8">
-          <p>© ۱۴۰۴ موسسه یاوران سلامت روان. تمامی حقوق محفوظ است.</p>
+          <p>تمام حقوق این سایت برای موسسه یاوران سلامت روان محفوظ است. ©</p>
           <p className="inline-flex items-center gap-1.5">
             طراحی و توسعه توسط
             <a
