@@ -12,7 +12,7 @@ const points = [
 
 export function About() {
   return (
-    <section id="about" className="bg-cream py-20 sm:py-28">
+    <section id="about" className="relative bg-cream py-20 sm:py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         {/* Image */}
         <Reveal className="relative">
@@ -25,7 +25,6 @@ export function About() {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="islamic-pattern-gold absolute -left-4 -top-4 -z-10 size-40 rounded-2xl opacity-30" />
           <div className="absolute -bottom-6 right-6 rounded-2xl bg-green-deep px-6 py-4 text-white shadow-lg">
             <p className="text-2xl font-extrabold text-gold">۱۵ سال</p>
             <p className="text-xs text-white/80">اعتماد و تجربه</p>

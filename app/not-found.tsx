@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft, Home, Phone } from 'lucide-react'
-import { Mandala } from '@/components/mandala'
+import { IslamicOrnament } from '@/components/islamic-ornament'
 import { Reveal } from '@/components/reveal'
 import { SiteHeader } from '@/components/sections/site-header'
 import { SiteFooter } from '@/components/sections/site-footer'
@@ -19,19 +19,18 @@ export default function NotFound() {
       <SiteHeader />
       <main id="page-content">
         <section className="relative overflow-hidden bg-green-deep pt-32 pb-24 text-white sm:pt-40 sm:pb-32">
-          <div className="islamic-pattern-gold pointer-events-none absolute inset-0 opacity-[0.12]" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-green-deep via-green-deep to-[#123f28]" />
           <div
-            className="pointer-events-none absolute -left-24 -top-24 text-gold/15"
+            className="pointer-events-none absolute -left-24 -top-24 text-gold/10"
             aria-hidden="true"
           >
-            <Mandala className="size-80" />
+            <IslamicOrnament className="size-80" />
           </div>
           <div
-            className="pointer-events-none absolute -bottom-24 -right-20 text-green-light/10"
+            className="pointer-events-none absolute -bottom-24 -right-20 text-green-light/8"
             aria-hidden="true"
           >
-            <Mandala className="size-72" />
+            <IslamicOrnament className="size-72" />
           </div>
 
           <div className="relative mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">

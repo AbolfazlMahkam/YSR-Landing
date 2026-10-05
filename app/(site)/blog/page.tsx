@@ -38,7 +38,7 @@ export default function BlogPage() {
       />
 
       {/* Featured post */}
-      <section className="bg-cream pb-20 pt-16 sm:pb-24 sm:pt-20">
+      <section className="relative bg-cream pb-20 pt-16 sm:pb-24 sm:pt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-gold/15 px-4 py-1.5 text-xs font-bold text-gold-deep">
@@ -93,7 +93,6 @@ export default function BlogPage() {
 
       {/* All posts */}
       <section className="relative overflow-hidden bg-white py-20 sm:py-24">
-        <div className="islamic-pattern pointer-events-none absolute inset-0 opacity-[0.04]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="بایگانی مطالب"
@@ -105,7 +104,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section className="bg-cream py-20 sm:py-24">
+      <section className="relative bg-cream py-20 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="rounded-3xl border border-gold/20 bg-white p-8 text-center shadow-sm sm:p-10">

@@ -138,7 +138,7 @@ export default async function CourseDetailPage({
         </div>
       </PageHero>
 
-      <section className="bg-cream py-16 sm:py-24">
+      <section className="relative bg-cream py-16 sm:py-24">
         <div className="mx-auto grid max-w-7xl items-start gap-10 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
           {/* Main column */}
           <div className="lg:col-span-2">
@@ -337,7 +337,7 @@ export default async function CourseDetailPage({
         </div>
       </section>
 
-      <section className="bg-white py-20 sm:py-24">
+      <section className="relative bg-white py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             align="start"

@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { StarDivider } from '@/components/star-divider'
-import { Mandala } from '@/components/mandala'
+import { IslamicOrnament } from '@/components/islamic-ornament'
 import { ContactForm } from '@/components/pages/contact-form'
 import { siteConfig } from '@/lib/site'
 
@@ -33,13 +33,12 @@ export function Contact() {
       id="contact"
       className="relative overflow-hidden bg-green-deep py-20 text-white sm:py-28"
     >
-      <div className="islamic-pattern-gold pointer-events-none absolute inset-0 opacity-[0.08]" />
       <motion.div
-        className="pointer-events-none absolute -left-32 top-10 text-gold/10"
+        className="pointer-events-none absolute -left-32 top-10 text-gold/8"
         animate={reduce ? {} : { rotate: 360 }}
         transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
       >
-        <Mandala className="size-80" />
+        <IslamicOrnament className="size-80" />
       </motion.div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

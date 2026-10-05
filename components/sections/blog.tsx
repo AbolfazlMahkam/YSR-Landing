@@ -9,7 +9,7 @@ const featured = posts.slice(0, 3)
 
 export function Blog() {
   return (
-    <section id="blog" className="bg-white py-20 sm:py-28">
+    <section id="blog" className="relative bg-white py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-right">
           <div>

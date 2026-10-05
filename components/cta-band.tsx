@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft, Phone } from 'lucide-react'
-import { Mandala } from '@/components/mandala'
+import { IslamicOrnament } from '@/components/islamic-ornament'
 import { Reveal } from '@/components/reveal'
 import { siteConfig } from '@/lib/site'
 
@@ -19,12 +19,11 @@ export function CtaBand({
 }) {
   return (
     <section className="relative overflow-hidden bg-green-deep py-20 text-white sm:py-24">
-      <div className="islamic-pattern-gold pointer-events-none absolute inset-0 opacity-[0.1]" />
       <div
-        className="pointer-events-none absolute -left-20 -top-20 text-gold/10"
+        className="pointer-events-none absolute -left-20 -top-20 text-gold/8"
         aria-hidden="true"
       >
-        <Mandala className="size-80" />
+        <IslamicOrnament className="size-80" />
       </div>
 
       <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">

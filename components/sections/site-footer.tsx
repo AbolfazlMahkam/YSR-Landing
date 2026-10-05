@@ -45,8 +45,8 @@ const socials = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-footer text-white/70">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <footer className="relative overflow-hidden bg-footer text-white/70">
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3">

@@ -109,7 +109,7 @@ export default function AboutPage() {
       />
 
       {/* Story */}
-      <section className="bg-cream py-20 sm:py-28">
+      <section className="relative bg-cream py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <Reveal className="relative">
             <div className="relative overflow-hidden rounded-3xl border border-gold/20 shadow-xl">
@@ -121,7 +121,6 @@ export default function AboutPage() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="islamic-pattern-gold absolute -left-4 -top-4 -z-10 size-40 rounded-2xl opacity-30" />
             <div className="absolute -bottom-6 right-6 rounded-2xl bg-green-deep px-6 py-4 text-white shadow-lg">
               <p className="text-2xl font-extrabold text-gold">۱۵ سال</p>
               <p className="text-xs text-white/80">اعتماد و تجربه</p>
@@ -201,7 +200,6 @@ export default function AboutPage() {
 
       {/* Values */}
       <section className="relative overflow-hidden bg-green-mist py-20 sm:py-28">
-        <div className="islamic-pattern pointer-events-none absolute inset-0 opacity-[0.04]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="ارزش‌هایی که به آن پایبندیم"
@@ -260,7 +258,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="bg-cream py-20 sm:py-28">
+      <section className="relative bg-cream py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="مدرسان و مشاوران موسسه"

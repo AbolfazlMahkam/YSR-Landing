@@ -212,7 +212,7 @@ export default async function PostPage({
         </div>
       </article>
 
-      <section className="bg-white py-20 sm:py-24">
+      <section className="relative bg-white py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             align="start"

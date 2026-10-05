@@ -103,7 +103,7 @@ export default function CoursesPage() {
       </section>
 
       {/* Catalog */}
-      <section className="bg-cream py-20 sm:py-24">
+      <section className="relative bg-cream py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="همه دوره‌ها"
@@ -117,7 +117,6 @@ export default function CoursesPage() {
 
       {/* Teaching process */}
       <section className="relative overflow-hidden bg-white py-20 sm:py-28">
-        <div className="islamic-pattern pointer-events-none absolute inset-0 opacity-[0.04]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="مسیر یادگیری در موسسه چگونه است؟"
@@ -184,7 +183,7 @@ export default function CoursesPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-green-mist py-20 sm:py-28">
+      <section className="relative bg-green-mist py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="پرسش‌های پرتکرار"

@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowLeft, PlayCircle } from "lucide-react";
-import { Mandala } from "@/components/mandala";
+import { IslamicOrnament } from "@/components/islamic-ornament";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -14,18 +14,17 @@ export function Hero() {
     <section
       id="home"
       className="relative overflow-hidden bg-green-deep pt-28 pb-20 text-white sm:pt-36 sm:pb-28">
-      <div className="islamic-pattern-gold pointer-events-none absolute inset-0 opacity-[0.12]" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-green-deep via-green-deep to-[#123f28]" />
 
       <motion.div
-        className="pointer-events-none absolute -left-24 -top-24 text-gold/20"
+        className="pointer-events-none absolute -left-24 -top-24 text-gold/12"
         {...slowLoop(90)}>
-        <Mandala className="size-72" />
+        <IslamicOrnament className="size-72" />
       </motion.div>
       <motion.div
-        className="pointer-events-none absolute -bottom-32 -right-20 text-green-light/15"
+        className="pointer-events-none absolute -bottom-32 -right-20 text-green-light/10"
         {...slowLoop(120)}>
-        <Mandala className="size-96" />
+        <IslamicOrnament className="size-96" />
       </motion.div>
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -86,8 +85,8 @@ export function Hero() {
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-gold/10 to-transparent" />
           <motion.div
             {...slowLoop(60)}
-            className="text-gold/70">
-            <Mandala className="size-[26rem]" />
+            className="text-gold/25">
+            <IslamicOrnament className="size-[26rem]" />
           </motion.div>
           <div className="absolute grid size-40 place-items-center rounded-full bg-white/5 text-center backdrop-blur-sm">
             <div>

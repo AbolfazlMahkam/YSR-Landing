@@ -75,32 +75,41 @@ function loadLogo() {
   return cachedLogo
 }
 
+const cachedPattern: Record<string, string> = {}
+
 /**
- * The eight-point star lattice already used by `.islamic-pattern` in
- * globals.css, emitted as one inline SVG so the whole card needs a single
- * `<img>` instead of hundreds of nodes.
+ * Tiles the real `public/pattern.svg` rosette across the cream panel.
+ *
+ * Satori has no CSS `mask`, so this has to be a self-contained SVG data URI —
+ * but the artwork is read straight from the source file, so the OG card and the
+ * site can't drift apart. The tile is carried by an SVG `<pattern>`, which keeps
+ * the whole card to a single `<img>` instead of hundreds of nodes.
+ *
+ * `pattern.svg` has a 100x125 viewBox whose motif is top-aligned with a
+ * 28.7-unit empty band below it, so the cell is kept at that exact 4:5 ratio —
+ * the same rhythm `.pattern-field::before` produces via `mask-size` in globals.css.
  */
-function loadPattern(stroke: string) {
-  const tile = 64
-  const star = '30,4 37,23 56,23 41,34 47,52 30,41 13,52 19,34 4,23 23,23'
-  // Generated slightly oversized, then scaled down onto the cream panel by the
-  // <img> width/height below, so no tile can poke into the green panel.
-  const cols = Math.ceil(CREAM_PANEL_WIDTH / tile) + 1
-  const rows = Math.ceil(ogSize.height / tile) + 1
-  const stars: string[] = []
-  for (let row = 0; row < rows; row++) {
-    const offset = row % 2 === 0 ? 0 : tile / 2
-    for (let col = 0; col < cols; col++) {
-      stars.push(
-        `<polygon points="${star}" transform="translate(${col * tile + offset} ${row * tile})"/>`,
-      )
-    }
-  }
+function loadPattern(ink: string) {
+  const cached = cachedPattern[ink]
+  if (cached) return cached
+
+  const source = readFileSync(
+    path.join(process.cwd(), 'public', 'pattern.svg'),
+    'utf8',
+  )
+  const d = source.match(/ d="([^"]+)"/)?.[1]
+  if (!d) throw new Error('pattern.svg: no path data found')
+
+  const w = CREAM_PANEL_WIDTH
+  const h = ogSize.height
+  // Sized exactly to the cream panel so the <img> below renders 1:1 — any other
+  // aspect would stretch the rosettes. <pattern> clips the tile to the rect.
   const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${cols * tile}" height="${rows * tile}" ` +
-    `viewBox="0 0 ${cols * tile} ${rows * tile}" fill="none" ` +
-    `stroke="${stroke}" stroke-width="1.1" stroke-linejoin="round">${stars.join('')}</svg>`
-  return `data:image/svg+xml,${encodeURIComponent(svg)}`
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">` +
+    `<defs><pattern id="t" width="100" height="125" patternUnits="userSpaceOnUse">` +
+    `<path d="${d}" fill="${ink}"/></pattern></defs>` +
+    `<rect width="${w}" height="${h}" fill="url(#t)"/></svg>`
+  return (cachedPattern[ink] = `data:image/svg+xml,${encodeURIComponent(svg)}`)
 }
 
 export function OgCard({ siteUrl }: { siteUrl: string }) {
@@ -133,7 +142,7 @@ export function OgCard({ siteUrl }: { siteUrl: string }) {
             position: 'absolute',
             left: 0,
             top: 0,
-            opacity: 0.16,
+            opacity: 0.12,
           }}
         />
 

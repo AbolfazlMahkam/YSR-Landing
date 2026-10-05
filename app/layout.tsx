@@ -121,7 +121,7 @@ export default function RootLayout({
         >
           رد شدن به محتوای اصلی
         </a>
-        {children}
+        <div className="pattern-field">{children}</div>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

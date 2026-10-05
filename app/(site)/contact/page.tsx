@@ -58,7 +58,7 @@ export default function ContactPage() {
       />
 
       {/* Contact methods */}
-      <section className="bg-cream py-20 sm:py-24">
+      <section className="relative bg-cream py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {info.map((item, i) => {
@@ -100,7 +100,6 @@ export default function ContactPage() {
 
       {/* Form + map */}
       <section className="relative overflow-hidden bg-white py-20 sm:py-28">
-        <div className="islamic-pattern pointer-events-none absolute inset-0 opacity-[0.04]" />
         <div className="relative mx-auto grid max-w-7xl items-start gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <div>
@@ -151,7 +150,7 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-green-mist py-20 sm:py-28">
+      <section className="relative bg-green-mist py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="پرسش‌های پرتکرار"

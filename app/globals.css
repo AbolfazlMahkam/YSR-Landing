@@ -88,6 +88,19 @@
   --input: #e3dccd;
   --ring: #c8a24a;
   --radius: 0.75rem;
+
+  /* Tiling geometry for public/pattern.svg. The viewBox is 100x125 but the
+     12-point rosette only occupies x/y 3.7-96.2 and is top-aligned, leaving a
+     28.7-unit empty band at the bottom. The cell must stay at a 4:5 ratio or
+     the rosette distorts, and that trailing band is what spaces the motifs
+     into rows. */
+  --pattern-src: url('/pattern.svg');
+  --pattern-cell: 96px 120px;
+  /* Kept as real :root variables rather than var(--color-gold): the theme block
+     above is `@theme inline`, so Tailwind inlines those values into utilities
+     and never emits them as custom properties for plain CSS to read. */
+  --pattern-ink-gold: #c8a24a;
+  --pattern-opacity: 0.05;
 }
 
 @layer base {
@@ -117,16 +130,77 @@
   }
 }
 
-/* Islamic geometric repeating background pattern */
-.islamic-pattern {
-  background-color: transparent;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpolygon points='30,2 38,22 58,22 42,34 48,54 30,42 12,54 18,34 2,22 22,22' fill='none' stroke='%23000000' stroke-width='0.5'/%3E%3C/svg%3E");
-  background-repeat: repeat;
+@layer components {
+  /* One continuous pattern layer for the whole document.
+     Per-section masks restarted the tile at every section boundary, so the
+     rosettes never lined up across the page. A single absolutely positioned
+     pseudo-element spanning the wrapper keeps one phase for the entire
+     document, and because it is anchored to the page (not the viewport) it
+     scrolls with the content and has no background-attachment quirks on iOS.
+
+     Stacking, all inside the wrapper's context:
+z-index 0  section backgrounds (they stay `position: relative`, which is
+                   what anchors the ornaments and wave SVGs inside them)
+       z-index 1  this layer — above the backgrounds, below the content
+       z-index 2  every non-decorative section child — keeps text, photos and
+                   cards un-veiled
+       z-index 3  the landing hero — its own solid background clears the
+                   pattern from the first screen
+     `isolation: isolate` keeps those levels from competing with the fixed
+     header (z-50) and the overlapping z-10 strips. */
+  .pattern-field {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .pattern-field::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-color: var(--pattern-ink-gold);
+    opacity: var(--pattern-opacity);
+    -webkit-mask-image: var(--pattern-src);
+    mask-image: var(--pattern-src);
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+    -webkit-mask-size: var(--pattern-cell);
+    mask-size: var(--pattern-cell);
+  }
+
+  /* Lift each section's in-flow content above the layer. Tagging ~20 wrappers
+     by hand is easy to get wrong, and any miss shows up as veiled text, so
+     this targets every non-decorative direct child instead. The absolutely
+     positioned overlays, ornaments and wave SVGs are excluded, which keeps
+     them anchored to their section exactly as before. `section`/`footer`
+     match at any depth, so nested markup is covered too. */
+  .pattern-field :is(section, footer) > *:not([class*='absolute']):not([class*='fixed']):not([class*='sticky']) {
+    position: relative;
+    z-index: 2;
+  }
+
+  .pattern-field #home {
+    z-index: 3;
+  }
 }
 
-.islamic-pattern-gold {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpolygon points='30,2 38,22 58,22 42,34 48,54 30,42 12,54 18,34 2,22 22,22' fill='none' stroke='%23DB1F2C' stroke-width='0.6'/%3E%3C/svg%3E");
-  background-repeat: repeat;
+/* Large ornamental rosette — the real artwork from public/big-islamic.svg.
+   Its 512x640 viewBox holds a 505x505 square motif pinned to the top, so
+   `100% auto` + top-left keeps it undistorted and lands it dead-centre in a
+   square box (the motif's centre sits at 40% of the mask height, and
+   0.40 x 1.25 = 0.5). Inherits its ink from the parent's text colour. */
+.islamic-ornament {
+  display: block;
+  background-color: currentColor;
+  -webkit-mask-image: url('/big-islamic.svg');
+  mask-image: url('/big-islamic.svg');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+  -webkit-mask-size: 100% auto;
+  mask-size: 100% auto;
 }
 
 /* Ogee / pointed arch clip for card tops and decorative shapes */
