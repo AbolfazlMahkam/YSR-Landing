@@ -88,16 +88,34 @@ export function SiteHeader() {
       className={`fixed inset-x-0 top-0 z-50 px-3 transition-all duration-300 sm:px-6`}
       role="banner"
     >
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="menu-backdrop"
+            aria-hidden="true"
+            className="fixed inset-0 z-0 bg-black/40 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: dur(0.25), ease: bezier(0.4, 0, 0.2, 1) }}
+            onClick={closeAndFocus}
+          />
+        )}
+      </AnimatePresence>
       <nav
         aria-label="منوی اصلی"
-        className={`mx-auto flex max-w-7xl flex-col overflow-hidden rounded-2xl border transition-all duration-300 ${
+        className={`relative z-10 mx-auto flex max-w-7xl flex-col overflow-hidden rounded-2xl border transition-all duration-300 ${
           scrolled
             ? 'border-gold/30 mt-3 bg-cream/80 shadow-sm backdrop-blur-md'
             : 'border-white/15 mt-3 bg-white/10 shadow-lg shadow-black/10 backdrop-blur-md'
         }`}
       >
         <div className="flex h-16 items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <Link href="/" aria-label="یاوران سلامت روان — بازگشت به صفحه اصلی">
+          <Link
+            href="/"
+            onClick={() => setMenuPath(null)}
+            aria-label="یاوران سلامت روان — بازگشت به صفحه اصلی"
+          >
             <Logo light={!scrolled} />
           </Link>
 
