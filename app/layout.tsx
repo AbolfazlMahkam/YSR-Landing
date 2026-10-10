@@ -1,19 +1,9 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Vazirmatn } from 'next/font/google'
-import { ogAlt, ogSize } from '@/lib/og/card'
+import { ogImage } from '@/lib/og/card'
 import { siteConfig } from '@/lib/site'
 import './globals.css'
-
-// Hand-maintained asset in public/. Not an app/*-image.tsx route because this
-// site builds with output: 'export', which emits those as extension-less files
-// that GitHub Pages serves as application/octet-stream.
-const ogImage = {
-  url: '/og-image.png',
-  width: ogSize.width,
-  height: ogSize.height,
-  alt: ogAlt,
-}
 
 const vazir = Vazirmatn({
   subsets: ['arabic'],

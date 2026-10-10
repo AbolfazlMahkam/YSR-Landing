@@ -16,6 +16,7 @@ import { Reveal } from '@/components/reveal'
 import { CtaBand } from '@/components/cta-band'
 import { InitialsAvatar } from '@/components/pages/initials-avatar'
 import { courses } from '@/lib/courses'
+import { ogImage } from '@/lib/og/card'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/about`,
     title: 'درباره موسسه یاوران سلامت روان',
     description: siteConfig.description,
+    images: [ogImage],
   },
 }
 

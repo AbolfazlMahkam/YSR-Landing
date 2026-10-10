@@ -5,7 +5,20 @@ import { ImageResponse } from 'next/og'
 export const ogSize = { width: 1200, height: 630 }
 
 export const ogAlt =
-  'Ù…ÙˆØ³Ø³Ù‡ ÛŒØ§ÙˆØ±Ø§Ù† Ø³Ù„Ø§Ù…Øª Ø±ÙˆØ§Ù† â€” Ø±ÙˆØ§Ù†Ø´Ù†Ø§Ø³ÛŒ Ù†ÙˆÛŒÙ† Ùˆ Ø­Ú©Ù…Øª Ø§Ø³Ù„Ø§Ù…ÛŒ Â· Yavaran-e Salamat-e Ravan, Modern Psychology & Islamic Wisdom'
+  'موسسه یاوران سلامت روان — روان‌شناسی نوین و حکمت اسلامی · Yavaran-e Salamat-e Ravan, Modern Psychology & Islamic Wisdom'
+
+// Hand-maintained asset in public/. Not an app/*-image.tsx route because this
+// site builds with output: 'export', which emits those as extension-less files
+// that GitHub Pages serves as application/octet-stream.
+// Shared by the root layout and the section pages. The ?v= query busts
+// link-preview caches (Facebook, WhatsApp, Telegram, …) when this image is
+// replaced — bump it whenever og-image.png changes.
+export const ogImage = {
+  url: '/og-image.png?v=2',
+  width: ogSize.width,
+  height: ogSize.height,
+  alt: ogAlt,
+}
 
 const palette = {
   cream: '#FAF6EF',

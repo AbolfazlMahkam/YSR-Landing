@@ -16,6 +16,7 @@ import { CtaBand } from '@/components/cta-band'
 import { CourseCatalog } from '@/components/pages/course-catalog'
 import { courseStats, courses } from '@/lib/courses'
 import { faqs } from '@/lib/faq'
+import { ogImage } from '@/lib/og/card'
 import { siteConfig } from '@/lib/site'
 import { formatNumber } from '@/lib/utils'
 
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     title: 'دوره‌های آموزشی روان‌شناسی | یاوران سلامت روان',
     description:
       'دوره‌های تخصصی روان‌شناسی و مشاوره با گواهی معتبر، حضوری و آنلاین، در قم و سراسر کشور.',
+    images: [ogImage],
   },
 }
 

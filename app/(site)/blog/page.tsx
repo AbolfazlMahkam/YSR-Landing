@@ -8,6 +8,7 @@ import { Reveal } from '@/components/reveal'
 import { CtaBand } from '@/components/cta-band'
 import { PostCatalog } from '@/components/pages/post-catalog'
 import { featuredPost } from '@/lib/blog'
+import { ogImage } from '@/lib/og/card'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     title: 'مقالات و یادداشت‌های روان‌شناسی | یاوران سلامت روان',
     description:
       'مقالات و یادداشت‌های کاربردی در حوزه روان‌شناسی، خانواده و معنویت از سوی مدرسان موسسه یاوران سلامت روان.',
+    images: [ogImage],
   },
 }
 

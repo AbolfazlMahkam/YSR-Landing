@@ -7,6 +7,7 @@ import { Reveal } from '@/components/reveal'
 import { Accordion } from '@/components/accordion'
 import { ContactForm } from '@/components/pages/contact-form'
 import { faqs } from '@/lib/faq'
+import { ogImage } from '@/lib/og/card'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/contact`,
     title: 'تماس با موسسه یاوران سلامت روان',
     description: `نشانی: ${siteConfig.address} — تلفن: ${siteConfig.phone}`,
+    images: [ogImage],
   },
 }
 
