@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
@@ -110,7 +111,7 @@ export default async function CourseDetailPage({
         crumbs={[
           { label: 'خانه', href: '/' },
           { label: 'دوره‌ها', href: '/courses' },
-          { label: course.category },
+          { label: course.title },
         ]}
         tone="cream"
       >
@@ -143,6 +144,18 @@ export default async function CourseDetailPage({
           {/* Main column */}
           <div className="lg:col-span-2">
             <Reveal>
+              <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-gold/15 bg-green-mist shadow-sm">
+                <Image
+                  src={course.image}
+                  alt={course.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 66vw, 720px"
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
+
+            <Reveal className="mt-8">
               <div className="rounded-3xl border border-gold/15 bg-white p-6 shadow-sm sm:p-8">
                 <h2 className="text-2xl font-extrabold text-green-deep">
                   معرفی دوره
