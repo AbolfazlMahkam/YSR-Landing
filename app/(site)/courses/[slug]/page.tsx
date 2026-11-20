@@ -143,17 +143,15 @@ export default async function CourseDetailPage({
         <div className="mx-auto grid max-w-7xl items-start gap-10 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
           {/* Main column */}
           <div className="lg:col-span-2">
-            <Reveal>
-              <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-gold/15 bg-green-mist shadow-sm">
-                <Image
-                  src={course.image}
-                  alt={course.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 66vw, 720px"
-                  className="object-cover"
-                />
-              </div>
-            </Reveal>
+            <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-gold/15 bg-green-mist shadow-sm">
+              <Image
+                src={course.image}
+                alt={course.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 66vw, 720px"
+                className="object-cover"
+              />
+            </div>
 
             <Reveal className="mt-8">
               <div className="rounded-3xl border border-gold/15 bg-white p-6 shadow-sm sm:p-8">

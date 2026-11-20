@@ -109,17 +109,15 @@ export default async function PostPage({
 
       <article className="bg-cream py-16 sm:py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-gold/15 bg-green-mist shadow-sm">
-              <Image
-                src={post.image}
-                alt={post.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 768px"
-                className="object-cover"
-              />
-            </div>
-          </Reveal>
+          <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-gold/15 bg-green-mist shadow-sm">
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-cover"
+            />
+          </div>
 
           <Reveal className="mt-6">
             <div className="flex items-center gap-4 rounded-3xl border border-gold/20 bg-white p-6 shadow-sm">
