@@ -33,7 +33,7 @@ export function PostCatalog({ exclude }: { exclude?: string }) {
                 aria-pressed={active}
                 className={`rounded-full px-4 py-2 text-xs font-semibold transition-colors ${
                   active
-                    ? 'bg-green-deep text-gold'
+                    ? 'bg-green-deep text-gold-text'
                     : 'bg-cream text-text-dark hover:bg-green-mist'
                 }`}
               >

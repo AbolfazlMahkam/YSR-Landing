@@ -72,7 +72,7 @@ export default function ContactPage() {
                       <Icon className="size-6" aria-hidden="true" />
                     </span>
                     <div>
-                      <p className="text-sm font-bold text-gold-deep">
+                      <p className="text-sm font-bold text-gold-ink">
                         {item.label}
                       </p>
                       {'href' in item && item.href ? (

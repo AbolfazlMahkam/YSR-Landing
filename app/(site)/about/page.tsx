@@ -245,7 +245,7 @@ export default function AboutPage() {
                   <span className="absolute -right-[2.4rem] top-1 grid size-6 place-items-center rounded-full bg-green-deep ring-4 ring-white">
                     <span className="size-1.5 rotate-45 rounded-[2px] bg-gold" />
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-3 py-1 text-xs font-bold text-gold-deep">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-3 py-1 text-xs font-bold text-gold-ink">
                     {item.year}
                   </span>
                   <h3 className="mt-3 text-lg font-extrabold text-green-deep">

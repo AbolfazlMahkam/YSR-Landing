@@ -68,11 +68,11 @@ export function Contact() {
                       <Icon className="size-6" aria-hidden="true" />
                     </span>
                     <div>
-                      <p className="text-sm font-bold text-gold">{item.label}</p>
+                      <p className="text-sm font-bold text-gold-text">{item.label}</p>
                       {item.href ? (
                         <a
                           href={item.href}
-                          className="mt-1 inline-block text-sm leading-7 text-white/85 transition-colors hover:text-gold"
+                          className="mt-1 inline-block text-sm leading-7 text-white/85 transition-colors hover:text-gold-text"
                         >
                           {item.value}
                         </a>

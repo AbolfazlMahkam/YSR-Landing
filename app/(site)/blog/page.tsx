@@ -43,7 +43,7 @@ export default function BlogPage() {
       <section className="relative bg-cream pb-20 pt-16 sm:pb-24 sm:pt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-gold/15 px-4 py-1.5 text-xs font-bold text-gold-deep">
+            <span className="inline-flex items-center gap-2 rounded-full bg-gold/15 px-4 py-1.5 text-xs font-bold text-gold-ink">
               <span className="size-1.5 rotate-45 rounded-[2px] bg-gold" />
               تازه‌ترین مطلب
             </span>

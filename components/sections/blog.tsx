@@ -31,10 +31,10 @@ export function Blog() {
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.1}>
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gold/15 bg-cream shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-green-deep/10">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gold/15 bg-cream shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-green-deep/10 focus-within:border-green-deep focus-within:ring-2 focus-within:ring-green-deep/20">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={p.image}

@@ -18,7 +18,7 @@ export default function NotFound() {
     <>
       <SiteHeader />
       <main id="page-content">
-        <section className="relative overflow-hidden bg-green-deep pt-32 pb-24 text-white sm:pt-40 sm:pb-32">
+        <section className="relative overflow-hidden bg-green-deep pt-40 pb-32 text-white sm:pt-48 sm:pb-40">
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-green-deep via-green-deep to-[#123f28]" />
           <div
             className="pointer-events-none absolute -left-24 -top-24 text-gold/10"
@@ -69,7 +69,7 @@ export default function NotFound() {
                   <li key={s.href}>
                     <Link
                       href={s.href}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 transition-colors hover:border-gold hover:text-gold"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 transition-colors hover:border-gold hover:text-gold-text"
                     >
                       {s.label}
                       <ArrowLeft className="size-3.5" aria-hidden="true" />

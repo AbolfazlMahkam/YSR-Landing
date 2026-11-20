@@ -48,6 +48,8 @@
   /* gold is the primary accent; red (above) is reserved for a few bold highlights */
   --color-gold: #c8a24a;
   --color-gold-deep: #a67f2e;
+  --color-gold-text: var(--text-gold-light);
+  --color-gold-ink: var(--text-gold-ink);
   --color-lavender: #7b7bd0;
   --color-lavender-soft: #b9b9e8;
   --color-lavender-mist: #f1f1fb;
@@ -101,6 +103,10 @@
      and never emits them as custom properties for plain CSS to read. */
   --pattern-ink-gold: #c8a24a;
   --pattern-opacity: 0.05;
+  --text-gold-light: #e8c979;
+  --text-gold-ink: #7a5a1f;
+  --focus-ring: #e8c979;
+  --focus-ring-outer: #0d5c32;
 }
 
 @layer base {
@@ -109,10 +115,16 @@
   }
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
   }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: 'ss01';
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px var(--focus-ring-outer);
   }
 }
 

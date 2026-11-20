@@ -284,7 +284,7 @@ export default async function CourseDetailPage({
                   className="size-20 text-lg"
                 />
                 <div>
-                  <p className="text-xs font-medium text-gold-deep">
+                  <p className="text-xs font-medium text-gold-ink">
                     مدرس دوره
                   </p>
                   <h3 className="mt-1 text-xl font-extrabold text-green-deep">
@@ -312,7 +312,7 @@ export default async function CourseDetailPage({
                   </span>
                   <span className="text-sm text-text-mid">تومان</span>
                 </p>
-                <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-3 py-1.5 text-xs font-semibold text-gold-deep">
+                <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-3 py-1.5 text-xs font-semibold text-gold-ink">
                   <CalendarDays className="size-3.5" aria-hidden="true" />
                   ظرفیت محدود — شروع {course.nextStart}
                 </p>

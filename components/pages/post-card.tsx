@@ -7,7 +7,7 @@ import { Reveal } from '@/components/reveal'
 export function PostCard({ post, delay = 0 }: { post: Post; delay?: number }) {
   return (
     <Reveal delay={delay} className="h-full">
-      <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gold/15 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-xl hover:shadow-green-deep/10">
+      <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gold/15 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-xl hover:shadow-green-deep/10 focus-within:border-green-deep focus-within:ring-2 focus-within:ring-green-deep/20">
         <div className="relative aspect-[16/10] overflow-hidden bg-green-mist">
           <Image
             src={post.image}

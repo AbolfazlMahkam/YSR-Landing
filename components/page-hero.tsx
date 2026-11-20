@@ -31,7 +31,7 @@ export function PageHero({
   children?: ReactNode
 }) {
   return (
-    <section className="relative overflow-hidden bg-green-deep pt-32 pb-20 text-white sm:pt-40 sm:pb-24">
+    <section className="relative overflow-hidden bg-green-deep pt-40 pb-28 text-white sm:pt-48 sm:pb-32">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-green-deep via-green-deep to-[#123f28]" />
 
       <div
@@ -50,7 +50,7 @@ export function PageHero({
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         {crumbs.length > 0 && (
           <nav aria-label="مسیر صفحه" className="mb-6">
-            <ol className="flex flex-wrap items-center justify-center gap-1 text-xs text-white/60">
+            <ol className="flex flex-wrap items-center justify-center gap-1 text-xs text-white/80">
               {crumbs.map((crumb, i) => {
                 const isLast = i === crumbs.length - 1
                 return (
@@ -58,7 +58,7 @@ export function PageHero({
                     {crumb.href && !isLast ? (
                       <Link
                         href={crumb.href}
-                        className="transition-colors hover:text-gold"
+                        className="transition-colors hover:text-gold-text"
                       >
                         {crumb.label}
                       </Link>
@@ -69,7 +69,7 @@ export function PageHero({
                     )}
                     {!isLast && (
                       <ChevronLeft
-                        className="size-3.5 text-gold/50"
+                        className="size-3.5 text-gold-text"
                         aria-hidden="true"
                       />
                     )}

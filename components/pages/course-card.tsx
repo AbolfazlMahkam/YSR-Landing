@@ -22,7 +22,7 @@ export function CourseCard({
 }) {
   return (
     <Reveal delay={delay} className="h-full">
-      <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gold/15 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-xl hover:shadow-green-deep/10">
+      <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gold/15 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-xl hover:shadow-green-deep/10 focus-within:border-green-deep focus-within:ring-2 focus-within:ring-green-deep/20">
         <div className="relative aspect-[16/10] overflow-hidden bg-green-mist">
           <Image
             src={course.image}
@@ -34,7 +34,7 @@ export function CourseCard({
           <span className="absolute right-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-green-deep shadow-sm">
             {course.category}
           </span>
-          <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-green-deep/90 px-2.5 py-1 text-xs font-semibold text-gold">
+          <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-green-deep/90 px-2.5 py-1 text-xs font-semibold text-gold-text">
             <span className="size-1.5 rotate-45 rounded-[2px] bg-gold" />
             {course.level}
           </span>

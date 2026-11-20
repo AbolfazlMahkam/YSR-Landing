@@ -75,7 +75,7 @@ export function SiteFooter() {
                 <a
                   href={`tel:${siteConfig.phoneE164}`}
                   dir="ltr"
-                  className="transition-colors hover:text-gold"
+                  className="transition-colors hover:text-gold-text"
                 >
                   {siteConfig.phone}
                 </a>
@@ -83,7 +83,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="transition-colors hover:text-gold"
+                  className="transition-colors hover:text-gold-text"
                 >
                   {siteConfig.email}
                 </a>
@@ -114,7 +114,7 @@ export function SiteFooter() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm transition-colors hover:text-gold"
+                      className="text-sm transition-colors hover:text-gold-text"
                     >
                       {link.label}
                     </Link>
@@ -125,14 +125,14 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <p className="mt-10 text-xs text-white/40">
+        <p className="mt-10 text-xs text-white/70">
           {courses.length} دوره تخصصی فعال — همه دوره‌ها با گواهی معتبر و امکان
           شرکت حضوری یا آنلاین.
         </p>
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-center text-xs text-white/50 sm:flex-row sm:px-6 sm:text-right lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-center text-xs text-white/70 sm:flex-row sm:px-6 sm:text-right lg:px-8">
           <p>تمام حقوق این سایت برای موسسه یاوران سلامت روان محفوظ است. ©</p>
           <p className="inline-flex items-center gap-1.5">
             طراحی و توسعه توسط
@@ -140,7 +140,7 @@ export function SiteFooter() {
               href="https://abolfazlmahkam.ir"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-gold transition-colors hover:text-white"
+              className="font-semibold text-gold-text transition-colors hover:text-white"
             >
               a.mahkam.950
             </a>

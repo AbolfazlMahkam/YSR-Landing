@@ -13,7 +13,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-green-deep pt-28 pb-20 text-white sm:pt-36 sm:pb-28">
+      className="relative overflow-hidden bg-green-deep pt-36 pb-28 text-white sm:pt-44 sm:pb-36">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-green-deep via-green-deep to-[#123f28]" />
 
       <motion.div
@@ -33,7 +33,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-4 py-1.5 text-sm font-medium text-gold">
+            className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-4 py-1.5 text-sm font-medium text-gold-text">
             <span className="size-1.5 rotate-45 rounded-[2px] bg-gold" />
             پیوند دانش نوین و حکمت اسلامی
           </motion.span>

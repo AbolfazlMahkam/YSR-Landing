@@ -58,7 +58,7 @@ export function Accordion({
                     {item.title}
                   </span>
                   {item.meta && (
-                    <span className="text-xs font-medium text-gold-deep">
+                    <span className="text-xs font-medium text-gold-ink">
                       {item.meta}
                     </span>
                   )}

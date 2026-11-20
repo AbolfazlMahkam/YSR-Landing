@@ -26,7 +26,7 @@ export function SiteHeader() {
   // On the landing page the nav jumps to the matching section; elsewhere it
   // navigates to the dedicated page.
   const hrefFor = (href: string, section: string) =>
-    isHome ? `${href}#${section}` : href
+    isHome ? (href === '/' ? '#home' : `#${section}`) : href
 
   const menuVariants: Variants = {
     closed: {
@@ -59,11 +59,44 @@ export function SiteHeader() {
   }, [])
 
   useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const closeOnDesktop = () => setMenuPath(null)
+    if (mq.matches) closeOnDesktop()
+    mq.addEventListener('change', closeOnDesktop)
+    return () => mq.removeEventListener('change', closeOnDesktop)
+  }, [])
+
+  useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setMenuPath(null)
         triggerRef.current?.focus()
+        return
+      }
+
+      if (e.key !== 'Tab' || !menuRef.current) return
+
+      const focusable = Array.from(
+        menuRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.offsetParent !== null)
+      if (focusable.length === 0) return
+
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      const active = document.activeElement
+
+      if (e.shiftKey && (active === first || !menuRef.current.contains(active))) {
+        e.preventDefault()
+        last.focus()
+      } else if (
+        !e.shiftKey &&
+        (active === last || !menuRef.current.contains(active))
+      ) {
+        e.preventDefault()
+        first.focus()
       }
     }
     document.addEventListener('keydown', onKey)
@@ -78,6 +111,13 @@ export function SiteHeader() {
     }
   }, [open])
 
+  useEffect(() => {
+    if (!open) return
+    menuRef.current
+      ?.querySelector<HTMLElement>('a[href], button:not([disabled])')
+      ?.focus()
+  }, [open])
+
   const closeAndFocus = useCallback(() => {
     setMenuPath(null)
     triggerRef.current?.focus()
@@ -85,7 +125,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 px-3 transition-all duration-300 sm:px-6`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300`}
       role="banner"
     >
       <AnimatePresence>
@@ -130,11 +170,11 @@ export function SiteHeader() {
                     className={`text-sm font-medium transition-colors ${
                       active
                         ? scrolled
-                          ? 'text-green-main'
-                          : 'text-gold'
+                          ? 'text-green-deep'
+                          : 'text-gold-text'
                         : scrolled
-                          ? 'text-text-mid hover:text-green-main'
-                          : 'text-white hover:text-gold'
+                          ? 'text-text-mid hover:text-green-deep'
+                          : 'text-white hover:text-gold-text'
                     }`}
                   >
                     {link.label}
@@ -151,7 +191,7 @@ export function SiteHeader() {
               rel="noopener noreferrer"
               className={`hidden items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors lg:inline-flex ${
                 scrolled
-                  ? 'border-green-main/30 text-green-deep hover:bg-green-main hover:text-white'
+                  ? 'border-green-main/30 text-green-deep hover:bg-green-deep hover:text-white'
                   : 'border-white/25 text-white hover:bg-white/10 hover:border-gold/60'
               }`}
             >
@@ -169,7 +209,7 @@ export function SiteHeader() {
               }`}
               aria-label={open ? 'بستن منو' : 'باز کردن منو'}
               aria-expanded={open}
-              aria-controls={open ? 'mobile-menu' : undefined}
+              aria-controls="mobile-menu"
             >
               {open ? <X className="size-6" /> : <Menu className="size-6" />}
             </button>
@@ -183,6 +223,7 @@ export function SiteHeader() {
               ref={menuRef}
               id="mobile-menu"
               role="dialog"
+              aria-modal="true"
               aria-label="منوی موبایل"
               variants={menuVariants}
               initial="closed"
@@ -213,8 +254,8 @@ export function SiteHeader() {
                           aria-current={active ? 'page' : undefined}
                           className={`block rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
                             scrolled
-                              ? 'text-text-dark hover:bg-green-mist hover:text-green-main'
-                              : 'text-white hover:bg-white/15 hover:text-gold'
+                              ? 'text-text-dark hover:bg-green-mist hover:text-green-deep'
+                              : 'text-white hover:bg-white/15 hover:text-gold-text'
                           }`}
                         >
                           {link.label}
@@ -230,7 +271,7 @@ export function SiteHeader() {
                       onClick={closeAndFocus}
                       className={`flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-center text-sm font-semibold transition-colors ${
                         scrolled
-                          ? 'border-green-main/30 text-green-deep hover:bg-green-main hover:text-white'
+                          ? 'border-green-main/30 text-green-deep hover:bg-green-deep hover:text-white'
                           : 'border-white/25 text-white hover:bg-white/10 hover:border-gold/60'
                       }`}
                     >
