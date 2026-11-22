@@ -41,3 +41,9 @@ export const siteConfig = {
     'https://neshan.org/maps/iframe/places/c5ec86f9a77e77dbcac9ab9cfab4a252#c34.624-50.853-20z-0p/34.624129311403216/50.85267917324583',
   openingHours: 'شنبه تا چهارشنبه، ۹ تا ۱۸',
 } as const
+
+export function absoluteUrl(path = '/') {
+  const normalized = path === '/' ? '/' : path.startsWith('/') ? path : `/${path}`
+  const withSlash = normalized === '/' || normalized.endsWith('/') ? normalized : `${normalized}/`
+  return new URL(withSlash, siteConfig.url).toString()
+}

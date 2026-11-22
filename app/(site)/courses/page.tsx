@@ -17,6 +17,7 @@ import { CourseCatalog } from '@/components/pages/course-catalog'
 import { courseStats, courses } from '@/lib/courses'
 import { faqs } from '@/lib/faq'
 import { ogImage } from '@/lib/og/card'
+import { breadcrumbJsonLd, webPageJsonLd } from '@/lib/schema'
 import { siteConfig } from '@/lib/site'
 import { formatNumber } from '@/lib/utils'
 
@@ -25,8 +26,8 @@ export const metadata: Metadata = {
   description:
     'فهرست دوره‌های تخصصی موسسه یاوران سلامت روان در قم: روان‌درمانی شناختی-رفتاری، مشاوره خانواده، روان‌شناسی اسلامی، تربیت فرزند، مدیریت استرس و روان‌سنجی بالینی با گواهی معتبر و امکان شرکت حضوری یا آنلاین.',
   alternates: {
-    canonical: '/courses',
-    languages: { 'fa-IR': '/courses' },
+    canonical: '/courses/',
+    languages: { 'fa-IR': '/courses/' },
   },
   openGraph: {
     type: 'website',
@@ -36,6 +37,12 @@ export const metadata: Metadata = {
       'دوره‌های تخصصی روان‌شناسی و مشاوره با گواهی معتبر، حضوری و آنلاین، در قم و سراسر کشور.',
     images: [ogImage],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'دوره‌های آموزشی روانشناسی | کاویان سلامت روان',
+    description: 'فهرست دوره‌های آموزشی و تخصصی موسسه کاویان سلامت روان.',
+    images: ['/og-image.png?v=2'],
+  }
 }
 
 const steps = [
@@ -75,8 +82,24 @@ export default function CoursesPage() {
   const totalStudents = courses.reduce((sum, c) => sum + c.studentsCount, 0)
   const onlineCount = courses.filter((c) => c.modes.includes('آنلاین')).length
 
+    const webPage = webPageJsonLd({
+    name: 'دوره\u200cهای آموزشی روانشناسی | کاویان سلامت روان',
+    description: 'فهرست دوره\u200cهای آموزشی و تخصصی موسسه کاویان سلامت روان در حوزه روانشناسی و رشد فردی.',
+    path: '/courses/',
+    type: 'CollectionPage',
+  })
+
+const breadcrumbs = breadcrumbJsonLd([
+    { name: 'خانه', path: '/' },
+    { name: 'دوره‌ها', path: '/courses/' },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbs, webPage]) }}
+      />
       <PageHero
         title="دوره‌های آموزشی تخصصی"
         description="مجموعه‌ای از دوره‌های علمی و کاربردی در حوزه روان‌شناسی، مشاوره خانواده و روان‌شناسی اسلامی؛ برای رشد فردی، خانوادگی و حرفه‌ای شما."

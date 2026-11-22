@@ -16,6 +16,7 @@ export interface Post {
   image: string
   category: PostCategory
   date: string
+  dateIso: string
   dateLabel: string
   readingTime: string
   title: string
@@ -27,9 +28,10 @@ export interface Post {
 export const posts: Post[] = [
   {
     slug: 'spiritual-calm-for-anxiety',
-    image: '/images/blog-1.png',
+    image: '/images/blog-1.webp',
     category: 'سلامت روان',
     date: '1404-03-12',
+    dateIso: '2025-06-02',
     dateLabel: '۱۲ خرداد ۱۴۰۴',
     readingTime: '۷ دقیقه',
     title: 'اضطراب را چگونه در آرامش معنوی مهار کنیم؟',
@@ -76,9 +78,10 @@ export const posts: Post[] = [
   },
   {
     slug: 'emotional-intelligence-in-children',
-    image: '/images/blog-2.png',
+    image: '/images/blog-2.webp',
     category: 'خانواده',
     date: '1404-02-05',
+    dateIso: '2025-04-25',
     dateLabel: '۵ خرداد ۱۴۰۴',
     readingTime: '۶ دقیقه',
     title: 'تربیت عاطفی فرزندان در خانواده‌های امروزی',
@@ -120,9 +123,10 @@ export const posts: Post[] = [
   },
   {
     slug: 'remembrance-and-mental-health',
-    image: '/images/blog-3.png',
+    image: '/images/blog-3.webp',
     category: 'معنویت',
     date: '1404-01-28',
+    dateIso: '2025-04-17',
     dateLabel: '۲۸ اردیبهشت ۱۴۰۴',
     readingTime: '۸ دقیقه',
     title: 'نقش ذکر و معنویت در سلامت روان',
@@ -167,6 +171,7 @@ export const posts: Post[] = [
     image: '/images/blog-4.svg',
     category: 'روان‌درمانی',
     date: '1404-03-28',
+    dateIso: '2025-06-18',
     dateLabel: '۲۸ خرداد ۱۴۰۴',
     readingTime: '۹ دقیقه',
     title: 'نشانه‌های هشدار افسردگی؛ چه زمانی باید مراجعه کرد؟',
@@ -209,6 +214,7 @@ export const posts: Post[] = [
     image: '/images/blog-5.svg',
     category: 'مهارت‌های زندگی',
     date: '1404-04-15',
+    dateIso: '2025-07-06',
     dateLabel: '۲۵ تیر ۱۴۰۴',
     readingTime: '۵ دقیقه',
     title: 'پنج عادت کوچک که هر روز حال شما را بهتر می‌کنند',
@@ -246,6 +252,7 @@ export const posts: Post[] = [
     image: '/images/blog-6.svg',
     category: 'روان‌درمانی',
     date: '1404-05-08',
+    dateIso: '2025-07-30',
     dateLabel: '۱۸ مرداد ۱۴۰۴',
     readingTime: '۷ دقیقه',
     title: 'چگونه روان‌شناس مناسب خود را انتخاب کنیم؟',

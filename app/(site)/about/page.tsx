@@ -17,6 +17,7 @@ import { CtaBand } from '@/components/cta-band'
 import { InitialsAvatar } from '@/components/pages/initials-avatar'
 import { courses } from '@/lib/courses'
 import { ogImage } from '@/lib/og/card'
+import { breadcrumbJsonLd, webPageJsonLd } from '@/lib/schema'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -24,8 +25,8 @@ export const metadata: Metadata = {
   description:
     'موسسه آموزشی و پژوهشی یاوران سلامت روان در قم؛ با تکیه بر پیوند روان‌شناسی علمی و معارف اسلامی، میزبان بیش از ۱۲٬۰۰۰ دانش‌پژوه و دانشجوی مشاوره و روان‌شناسی. با تیم مدرسان و ارزش‌های موسسه آشنا شوید.',
   alternates: {
-    canonical: '/about',
-    languages: { 'fa-IR': '/about' },
+    canonical: '/about/',
+    languages: { 'fa-IR': '/about/' },
   },
   openGraph: {
     type: 'profile',
@@ -34,6 +35,12 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [ogImage],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'درباره موسسه کاویان سلامت روان',
+    description: 'موسسه آموزشی و پژوهشی کاویان سلامت روان با رویکردی میان روانشناسی نوین و حکمت اسلامی.',
+    images: ['/og-image.png?v=2'],
+  }
 }
 
 const values = [
@@ -101,8 +108,24 @@ export default function AboutPage() {
       (inst, i, list) => list.findIndex((x) => x.name === inst.name) === i,
     )
 
+    const webPage = webPageJsonLd({
+    name: 'درباره ما | کاویان سلامت روان',
+    description: 'درباره موسسه کاویان سلامت روان، مأموریت، ارزش\u200cها و چشم\u200cانداز آموزشی و پژوهشی.',
+    path: '/about/',
+    type: 'AboutPage',
+  })
+
+const breadcrumbs = breadcrumbJsonLd([
+    { name: 'خانه', path: '/' },
+    { name: 'درباره ما', path: '/about/' },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbs, webPage]) }}
+      />
       <PageHero
         title="موسسه‌ای برای رشد روان، در مسیر ایمان و آگاهی"
         description={`${siteConfig.name} با دو ستون دانش روان‌شناسی نوین و معارف عمیق اسلامی بنیان نهاده شده است تا آرامش پایدار، نه یک اتفاق گذرا، باشد.`}
@@ -116,7 +139,7 @@ export default function AboutPage() {
           <Reveal className="relative">
             <div className="relative overflow-hidden rounded-3xl border border-gold/20 shadow-xl">
               <Image
-                src="/images/institute.png"
+                src="/images/institute.webp"
                 alt="فضای آموزشی موسسه یاوران سلامت روان"
                 width={720}
                 height={560}

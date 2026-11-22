@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, Home, Phone } from 'lucide-react'
 import { IslamicOrnament } from '@/components/islamic-ornament'
@@ -5,6 +6,12 @@ import { Reveal } from '@/components/reveal'
 import { SiteHeader } from '@/components/sections/site-header'
 import { SiteFooter } from '@/components/sections/site-footer'
 import { siteConfig } from '@/lib/site'
+
+export const metadata: Metadata = {
+  title: 'صفحه پیدا نشد',
+  description: 'صفحه موردنظر در وب‌سایت موسسه یاوران سلامت روان پیدا نشد.',
+  robots: { index: false, follow: false },
+}
 
 const suggestions = [
   { label: 'دوره‌های آموزشی', href: '/courses' },

@@ -8,6 +8,7 @@ import { Accordion } from '@/components/accordion'
 import { ContactForm } from '@/components/pages/contact-form'
 import { faqs } from '@/lib/faq'
 import { ogImage } from '@/lib/og/card'
+import { breadcrumbJsonLd, webPageJsonLd } from '@/lib/schema'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
   description:
     'راه‌های ارتباط با موسسه یاوران سلامت روان در قم: نشانی بلوار امین، شماره تماس، ایمیل و فرم آنلاین برای درخواست مشاوره رایگان و ثبت‌نام در دوره‌ها.',
   alternates: {
-    canonical: '/contact',
-    languages: { 'fa-IR': '/contact' },
+    canonical: '/contact/',
+    languages: { 'fa-IR': '/contact/' },
   },
   openGraph: {
     type: 'website',
@@ -25,6 +26,12 @@ export const metadata: Metadata = {
     description: `نشانی: ${siteConfig.address} — تلفن: ${siteConfig.phone}`,
     images: [ogImage],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'تماس با موسسه کاویان سلامت روان',
+    description: 'راه‌های ارتباط با موسسه کاویان سلامت روان در قم.',
+    images: ['/og-image.png?v=2'],
+  }
 }
 
 const info = [
@@ -50,8 +57,24 @@ const info = [
 ]
 
 export default function ContactPage() {
+    const webPage = webPageJsonLd({
+    name: 'تماس با ما | کاویان سلامت روان',
+    description: 'راه\u200cهای ارتباط با موسسه کاویان سلامت روان و ثبت درخواست مشاوره.',
+    path: '/contact/',
+    type: 'ContactPage',
+  })
+
+const breadcrumbs = breadcrumbJsonLd([
+    { name: 'خانه', path: '/' },
+    { name: 'تماس با ما', path: '/contact/' },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbs, webPage]) }}
+      />
       <PageHero
         title="با ما در ارتباط باشید"
         description="برای مشاوره، ثبت‌نام در دوره‌ها یا هر پرسشی، پیام خود را برای ما ارسال کنید. کارشناسان ما در اسرع وقت پاسخگو خواهند بود."

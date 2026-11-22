@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowLeft, PlayCircle } from "lucide-react";
 import { IslamicOrnament } from "@/components/islamic-ornament";
@@ -61,18 +62,18 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
-            <a
-              href="#courses"
+            <Link
+              href="/courses/"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gold px-8 py-4 text-sm font-bold text-green-deep shadow-lg shadow-black/20 transition-transform hover:scale-[1.03]">
               مشاهده دوره‌ها
               <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
-            </a>
-            <a
-              href="#about"
+            </Link>
+            <Link
+              href="/about/"
               className="inline-flex items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/10">
               <PlayCircle className="size-5 text-gold" />
               معرفی موسسه
-            </a>
+            </Link>
           </motion.div>
         </div>
 

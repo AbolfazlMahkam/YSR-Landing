@@ -23,6 +23,7 @@ import { CourseCard } from '@/components/pages/course-card'
 import { EnrollForm } from '@/components/pages/enroll-form'
 import { InitialsAvatar } from '@/components/pages/initials-avatar'
 import { courses, getCourse, getRelatedCourses } from '@/lib/courses'
+import { webPageJsonLd } from '@/lib/schema'
 import { siteConfig } from '@/lib/site'
 
 export function generateStaticParams() {
@@ -45,15 +46,21 @@ export async function generateMetadata({
     title: `${course.title} | دوره‌های آموزشی`,
     description: `${course.summary} مدت دوره: ${course.duration}، سطح ${course.level}، شیوه برگزاری: ${course.modes.join(' و ')}.`,
     alternates: {
-      canonical: `/courses/${course.slug}`,
-      languages: { 'fa-IR': `/courses/${course.slug}` },
+      canonical: `/courses/${course.slug}/`,
+      languages: { 'fa-IR': `/courses/${course.slug}/` },
     },
     openGraph: {
       type: 'article',
-      url: `${siteConfig.url}/courses/${course.slug}`,
+      url: `${siteConfig.url}/courses/${course.slug}/`,
       title: `${course.title} | ${siteConfig.name}`,
       description: course.summary,
-      images: [{ url: course.image }],
+      images: [{ url: course.image, width: 1200, height: 630, alt: course.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${course.title} | ${siteConfig.name}`,
+      description: course.summary,
+      images: [course.image],
     },
   }
 }
@@ -70,33 +77,49 @@ export default async function CourseDetailPage({
 
   const related = getRelatedCourses(course)
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Course',
+  const webPage = webPageJsonLd({
     name: course.title,
     description: course.summary,
-    inLanguage: 'fa-IR',
-    provider: {
-      '@type': 'EducationalOrganization',
-      name: siteConfig.name,
-      url: siteConfig.url,
+    path: `/courses/${course.slug}/`,
+    type: 'WebPage',
+  })
+
+  const jsonLd = [
+    webPage,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      name: course.title,
+      description: course.summary,
+      inLanguage: 'fa-IR',
+      url: `${siteConfig.url}/courses/${course.slug}/`,
+      provider: {
+        '@type': 'EducationalOrganization',
+        '@id': `${siteConfig.url}/#organization`,
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+      educationalLevel: course.level,
+      timeRequired: `PT${course.durationHours}H`,
+      offers: {
+        '@type': 'Offer',
+        category: 'Paid',
+        price: String(course.priceToman).replace(/[^0-9]/g, ''),
+        priceCurrency: 'IRR',
+        availability: 'https://schema.org/InStock',
+        url: `${siteConfig.url}/courses/${course.slug}/`,
+      },
     },
-    educationalLevel: course.level,
-    timeRequired: `PT${course.durationHours}H`,
-    offers: {
-      '@type': 'Offer',
-      category: 'Paid',
-      price: course.priceToman,
-      priceCurrency: 'IRR',
-      availability: 'https://schema.org/InStock',
-      url: `${siteConfig.url}/courses/${course.slug}`,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'خانه', item: `${siteConfig.url}/` },
+        { '@type': 'ListItem', position: 2, name: 'دوره‌ها', item: `${siteConfig.url}/courses/` },
+        { '@type': 'ListItem', position: 3, name: course.title, item: `${siteConfig.url}/courses/${course.slug}/` },
+      ],
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: course.ratingValue,
-      reviewCount: course.reviews,
-    },
-  }
+  ]
 
   return (
     <>
@@ -148,6 +171,7 @@ export default async function CourseDetailPage({
                 src={course.image}
                 alt={course.title}
                 fill
+                priority
                 sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 66vw, 720px"
                 className="object-cover"
               />

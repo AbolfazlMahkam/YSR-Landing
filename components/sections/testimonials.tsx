@@ -5,19 +5,19 @@ import { StarDivider } from '@/components/star-divider'
 
 const testimonials = [
   {
-    avatar: '/images/avatar-1.png',
+    avatar: '/images/avatar-1.webp',
     name: 'محمد رضایی',
     role: 'دانش‌پژوه دوره روان‌درمانی',
     text: 'دوره‌ها فراتر از انتظارم بود. تلفیق مباحث علمی با نگاه معنوی واقعاً به من در درک عمیق‌تر مسائل کمک کرد.',
   },
   {
-    avatar: '/images/avatar-2.png',
+    avatar: '/images/avatar-2.webp',
     name: 'فاطمه محمدی',
     role: 'مشاور خانواده',
     text: 'اساتید بسیار مجرب و دلسوز بودند. مهارت‌هایی که آموختم را هر روز در زندگی و کارم به کار می‌برم.',
   },
   {
-    avatar: '/images/avatar-3.png',
+    avatar: '/images/avatar-3.webp',
     name: 'زهرا کریمی',
     role: 'شرکت‌کننده دوره روانشناسی معنوی',
     text: 'محیط آموزشی آرام و حرفه‌ای موسسه، همراه با محتوای غنی، تجربه‌ای اثرگذار برای من رقم زد.',
@@ -61,6 +61,7 @@ export function Testimonials() {
                     alt={t.name}
                     width={52}
                     height={52}
+                    sizes="52px"
                     className="size-13 rounded-full object-cover ring-2 ring-green-mist"
                   />
                   <div>

@@ -9,6 +9,7 @@ import { CtaBand } from '@/components/cta-band'
 import { PostCatalog } from '@/components/pages/post-catalog'
 import { featuredPost } from '@/lib/blog'
 import { ogImage } from '@/lib/og/card'
+import { breadcrumbJsonLd, webPageJsonLd } from '@/lib/schema'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -16,8 +17,8 @@ export const metadata: Metadata = {
   description:
     'مقالات، یادداشت‌ها و پژوهش‌های کاربردی موسسه یاوران سلامت روان در حوزه سلامت روان، خانواده، معنویت و مهارت‌های زندگی.',
   alternates: {
-    canonical: '/blog',
-    languages: { 'fa-IR': '/blog' },
+    canonical: '/blog/',
+    languages: { 'fa-IR': '/blog/' },
   },
   openGraph: {
     type: 'website',
@@ -27,11 +28,33 @@ export const metadata: Metadata = {
       'مقالات و یادداشت‌های کاربردی در حوزه روان‌شناسی، خانواده و معنویت از سوی مدرسان موسسه یاوران سلامت روان.',
     images: [ogImage],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'مقالات و یادداشت‌های روانشناسی | کاویان سلامت روان',
+    description: 'مقالات و یادداشت‌های کاربردی موسسه کاویان سلامت روان.',
+    images: ['/og-image.png?v=2'],
+  }
 }
 
 export default function BlogPage() {
+    const webPage = webPageJsonLd({
+    name: 'مقالات و یادداشت\u200cهای روانشناسی | کاویان سلامت روان',
+    description: 'مقالات و یادداشت\u200cهای کاربردی در حوزه سلامت روان، خانواده، معنویت و روان\u200cدرمانی.',
+    path: '/blog/',
+    type: 'CollectionPage',
+  })
+
+const breadcrumbs = breadcrumbJsonLd([
+    { name: 'خانه', path: '/' },
+    { name: 'مقالات', path: '/blog/' },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbs, webPage]) }}
+      />
       <PageHero
         title="مقالات و یادداشت‌ها"
         description="تجربه‌ها، تحلیل‌ها و راهکارهای عملی مدرسان و مشاوران موسسه، برای زندگی روزمره‌ای آرام‌تر و آگاهانه‌تر."

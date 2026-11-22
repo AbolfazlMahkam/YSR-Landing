@@ -53,7 +53,7 @@ export interface Course {
 export const courses: Course[] = [
   {
     slug: 'cbt-psychotherapy',
-    image: '/images/course-1.png',
+    image: '/images/course-1.webp',
     tag: 'روانشناسی شناختی',
     category: 'روان‌درمانی',
     level: 'متوسط',
@@ -138,7 +138,7 @@ export const courses: Course[] = [
   },
   {
     slug: 'family-counseling',
-    image: '/images/course-2.png',
+    image: '/images/course-2.webp',
     tag: 'خانواده و ازدواج',
     category: 'خانواده و ازدواج',
     level: 'مقدماتی',
@@ -222,7 +222,7 @@ export const courses: Course[] = [
   },
   {
     slug: 'spiritual-psychology',
-    image: '/images/course-3.png',
+    image: '/images/course-3.webp',
     tag: 'روانشناسی اسلامی',
     category: 'روانشناسی معنوی',
     level: 'مقدماتی',

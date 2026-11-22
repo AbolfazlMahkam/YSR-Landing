@@ -18,10 +18,11 @@ export function About() {
         <Reveal className="relative">
           <div className="relative overflow-hidden rounded-3xl border border-gold/20 shadow-xl">
             <Image
-              src="/images/institute.png"
+              src="/images/institute.webp"
               alt="فضای آموزشی موسسه یاوران سلامت روان"
               width={720}
               height={560}
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="h-full w-full object-cover"
             />
           </div>

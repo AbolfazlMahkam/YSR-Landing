@@ -10,6 +10,7 @@ import { CtaBand } from '@/components/cta-band'
 import { PostCard } from '@/components/pages/post-card'
 import { InitialsAvatar } from '@/components/pages/initials-avatar'
 import { getPost, getRelatedPosts, posts } from '@/lib/blog'
+import { webPageJsonLd } from '@/lib/schema'
 import { siteConfig } from '@/lib/site'
 
 export function generateStaticParams() {
@@ -32,17 +33,23 @@ export async function generateMetadata({
     title: post.title,
     description: post.excerpt,
     alternates: {
-      canonical: `/blog/${post.slug}`,
-      languages: { 'fa-IR': `/blog/${post.slug}` },
+      canonical: `/blog/${post.slug}/`,
+      languages: { 'fa-IR': `/blog/${post.slug}/` },
     },
     openGraph: {
       type: 'article',
-      url: `${siteConfig.url}/blog/${post.slug}`,
+      url: `${siteConfig.url}/blog/${post.slug}/`,
       title: post.title,
       description: post.excerpt,
-      publishedTime: post.date,
+      publishedTime: post.dateIso,
       authors: [post.author.name],
-      images: [{ url: post.image }],
+      images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
     },
   }
 }
@@ -59,21 +66,37 @@ export default async function PostPage({
 
   const related = getRelatedPosts(post)
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
+  const webPage = webPageJsonLd({
+    name: post.title,
     description: post.excerpt,
-    inLanguage: 'fa-IR',
-    datePublished: post.date,
-    author: { '@type': 'Person', name: post.author.name },
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
+    path: `/blog/${post.slug}/`,
+    type: 'WebPage',
+  })
+
+  const jsonLd = [
+    webPage,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.excerpt,
+      inLanguage: 'fa-IR',
+      datePublished: post.dateIso,
+      author: { '@type': 'Person', name: post.author.name },
+      publisher: { '@id': `${siteConfig.url}/#organization` },
+      mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}/`,
+      image: [`${siteConfig.url}${post.image}`],
     },
-    mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}`,
-  }
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'خانه', item: `${siteConfig.url}/` },
+        { '@type': 'ListItem', position: 2, name: 'مقالات', item: `${siteConfig.url}/blog/` },
+        { '@type': 'ListItem', position: 3, name: post.title, item: `${siteConfig.url}/blog/${post.slug}/` },
+      ],
+    },
+  ]
 
   return (
     <>
@@ -114,6 +137,7 @@ export default async function PostPage({
               src={post.image}
               alt={post.title}
               fill
+              priority
               sizes="(max-width: 768px) 100vw, 768px"
               className="object-cover"
             />

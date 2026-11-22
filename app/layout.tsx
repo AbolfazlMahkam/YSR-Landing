@@ -2,18 +2,19 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Vazirmatn } from 'next/font/google'
 import { ogImage } from '@/lib/og/card'
+import { organizationJsonLd, websiteJsonLd } from '@/lib/schema'
 import { siteConfig } from '@/lib/site'
 import './globals.css'
 
 const vazir = Vazirmatn({
-  subsets: ['arabic'],
+  subsets: ['arabic', 'latin'],
   variable: '--font-vazir',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} | پیوند روانشناسی نوین و حکمت اسلامی`,
+    default: siteConfig.ogTitle,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -72,31 +73,13 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'EducationalOrganization',
-  name: siteConfig.name,
-  alternateName: siteConfig.nameEn,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/images/logo.png`,
-  description: siteConfig.description,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'تهران',
-    addressRegion: 'تهران',
-    addressCountry: 'IR',
-    streetAddress: 'خیابان ولیعصر، نبش کوچه یاس، پلاک ۱۲۰',
-  },
-  telephone: '+98-21-88881234',
-  email: siteConfig.email,
-  sameAs: [],
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const jsonLd = [organizationJsonLd(), websiteJsonLd()]
+
   return (
     <html lang="fa" dir="rtl" className={vazir.variable}>
       <head>
